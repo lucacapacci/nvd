@@ -1,0 +1,37 @@
+name: NVD Sync
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+jobs:
+  nvd-sync:
+    name: NVD Sync
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync with NVD
+        run: |
+          python ./sync.py $GITHUB_WORKSPACE
+
+      - name: Set up Git configuration
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git status
+          git add .
+          git commit -m "NVD Sync $(date -u '+%Y-%m-%d %H:%M')"
+          git push
