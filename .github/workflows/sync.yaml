@@ -22,11 +22,6 @@ jobs:
         run: |
           python ./sync.py $GITHUB_WORKSPACE
 
-      - name: Set up Git configuration
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
