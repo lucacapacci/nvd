@@ -65,21 +65,6 @@ def sync_cves(repo_path: Path, syncdate: dict) -> None:
     print(f'{len(data)} CVEs synced')
 
 
-def sync_cpematch(repo_path: Path, syncdate: dict) -> None:
-    data = nvd_request('rest/json/cpematch/2.0', syncdate, 'matchStrings')
-
-    for ms in data:
-        ms_id = ms['matchString']['matchCriteriaId']
-        ms_dir_path = repo_path / 'cpematch' / ms_id[:2]
-        ms_dir_path.mkdir(parents=True, exist_ok=True)
-        ms_path = ms_dir_path / f'{ms_id}.json'
-        print(f'Updating {ms_path}')
-        with open(ms_path, "w") as f:
-            json.dump(ms, f)
-
-    print(f'{len(data)} CPE Match Strings synced')
-
-
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         sys.exit(f'usage: {sys.argv[0]} <repository>')
@@ -90,7 +75,6 @@ if __name__ == '__main__':
     with open(syncdate_path, 'r') as f:
         syncdate = json.loads(f.read())
 
-    sync_cpematch(repo_path, syncdate)
     sync_cves(repo_path, syncdate)
 
     with open(syncdate_path, 'w') as f:
