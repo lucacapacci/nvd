@@ -14,7 +14,7 @@ cve/{year}/CVE-{year}-{id}.json
 To access CVE-2025-0001:
 
 ```
-https://raw.githubusercontent.com/lucacapacci/nvd/refs/heads/main/cve/2025/CVE-2025-0001.json
+https://lucacapacci.github.io/nvd/cve/2025/CVE-2025-0001.json
 ```
 
 ## Usage Examples
@@ -22,7 +22,7 @@ https://raw.githubusercontent.com/lucacapacci/nvd/refs/heads/main/cve/2025/CVE-2
 ### Using `curl`
 
 ```bash
-curl -L https://raw.githubusercontent.com/lucacapacci/nvd/refs/heads/main/cve/2025/CVE-2025-0001.json
+curl -L https://lucacapacci.github.io/nvd/cve/2025/CVE-2025-0001.json
 ```
 
 ### Using Python
@@ -30,7 +30,7 @@ curl -L https://raw.githubusercontent.com/lucacapacci/nvd/refs/heads/main/cve/20
 ```python
 import requests
 
-url = "https://raw.githubusercontent.com/lucacapacci/nvd/refs/heads/main/cve/2025/CVE-2025-0001.json"
+url = "https://lucacapacci.github.io/nvd/cve/2025/CVE-2025-0001.json"
 response = requests.get(url)
 cve_data = response.json()
 
