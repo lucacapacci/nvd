@@ -28,5 +28,5 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git status
           git add .
-          git commit -m "NVD Sync $(date -u '+%Y-%m-%d %H:%M')"
+          git diff --cached --quiet && exit 0 || git commit -m "NVD Sync $(date -u '+%Y-%m-%d %H:%M')"
           git push
